@@ -1,0 +1,58 @@
+button.button,
+button.button.white {
+    padding: .6em 1em;
+    font-family: 'Poppins', sans-serif;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-weight: 500;
+    text-transform: lowercase;
+
+    transform: scale(1);
+    -webkit-transition: transform 100ms linear;
+    transition: transform 100ms linear;
+}
+
+button.button.right span {
+    padding-right: .5em;
+}
+
+button.button.left span {
+    padding-left: .5em;
+}
+
+button.button:hover {
+    transform: scale(1.025);
+}
+
+button.button {
+    background-color: var(--turquoise);
+    color: var(--bg1);
+}
+
+.sign-out-button {
+    padding: .6em 1em;
+    font-family: 'Poppins', sans-serif;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-weight: 500;
+    text-transform: uppercase;
+    background-color: var(--bg2);
+    color: var(--white);
+    margin-left: 1em;
+}
+
+.sign-out-button:hover {
+    transform: scale(1.1);
+    -webkit-transition: transform 100ms linear;
+    transition: transform 100ms linear;
+}
+
+.sign-out-button:not(:hover) {
+    transform: scale(1);
+    -webkit-transition: transform 100ms linear;
+    transition: transform 100ms linear;    
+}

@@ -1,0 +1,25 @@
+:root {
+  --bg:  hsl(200, 19%, 18%);
+  --bg1: hsl(200, 19%, 13%);
+  --turquoise: hsl(174, 38%, 66%);
+  --turquoise-black: hsl(200, 19%, 15%);
+  --bg2: hsl(200, 19%, 7%);
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  padding: 0; margin: 0;
+}

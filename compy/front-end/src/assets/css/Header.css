@@ -1,0 +1,109 @@
+header {
+    width: 100%;
+    background-color: var(--bg1);
+    color: var(--turquoise);
+    -webkit-box-shadow: 0 0 16px -2px rgba(0, 0, 0, .75);
+    -moz-box-shadow: 0 0 16px -2px rgba(0, 0, 0, .75);
+    box-shadow: 0 0 16px -2px rgba(0, 0, 0, .75);
+}
+
+header > .container {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    width: 100%; max-width: 1200px;
+    margin: 0 auto;
+    align-items: center;
+    padding: 0 1em;
+}
+
+header > .container a {
+    text-decoration: none;
+    color: var(--black);
+}
+
+header > .container > .title {
+    font-size: 1.4em;
+    font-weight: 500;
+    padding: 1em 0;  /* increase here for larger header */
+}
+
+header > .container > .title span:first-child {
+    display: inline-block;
+    border: 2px solid var(--turquoise);
+    padding: 0 .25em;
+    margin-right: .25em;
+    border-radius: 10px;
+    font-weight: 700;
+    color: var(--turquoise);
+}
+
+header > .container > .navbar {
+    height: 100%;
+    align-items: center;
+    justify-self: end;
+    display: flex;
+}
+
+header > .container > .navbar > a {
+    margin: 0 1em;
+    transform: scale(1);
+    -webkit-transition: transform 100ms linear;
+    transition: transform 100ms linear;
+}
+
+header > .container > .navbar > a:hover {
+   transform: scale(1.1);
+}
+
+header > .container > .navbar > a[target="_blank"]:hover {
+    transform: none;
+}
+
+header > .container > .navbar > a span {
+    font-size: .9em;
+    margin-right: 5px;
+    position: relative;
+}
+
+header > .container > .navbar > a span:before {
+    content: '';
+    position: absolute;
+    left: -1em; top: -3px; bottom: -3px; width: 4px;
+    border-radius: 2px;
+    margin-left: -2px;
+    background-color: var(--background);
+}
+
+header > .container > .navbar > a.active {
+    font-weight: bold;
+}
+
+header > .container > .navbar > a:last-child {
+    margin-right: 0;
+}
+
+@media screen and (max-width: 780px) {
+    header > .container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+    }
+    header > .container > .title {
+        justify-self: center;
+    }
+    header > .container > .navbar {
+        justify-self: center;
+        padding-bottom: 1em;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    header > .container > .navbar {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 1em;
+    }
+
+    header > .container > .navbar button:last-child {
+        margin-left: 0;
+    }
+}
