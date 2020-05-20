@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 
+/* API REQUEST */
+import axios from 'axios';
+
 /* React router */
 import { NavLink } from 'react-router-dom';
 import { withRouter } from 'react-router'
@@ -10,6 +13,10 @@ import fb from '../config/firebase';
 /* Styling */
 import { RegisterContainer, Global } from '../assets/styles/Register';
 
+/* Domain */
+import {domain} from '../config/deploy';
+
+
 const Register = ({ history }) => {
 
     const [email, setEmail] = useState('')
@@ -18,7 +25,10 @@ const Register = ({ history }) => {
     const handleSubmit = async (event) => {
         event.preventDefault()
         try {
-            await fb.auth().createUserWithEmailAndPassword(email.trim(), password)
+            await fb.auth().createUserWithEmailAndPassword(email.trim(), password);
+
+            const res = await axios.post(`${domain}/default_image`);
+            localStorage.setItem('token', res.data.result);
             history.push('/');
         } catch (error) {
             alert(error);

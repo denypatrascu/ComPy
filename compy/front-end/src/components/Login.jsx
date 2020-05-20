@@ -4,6 +4,9 @@ import React, { useState, useContext } from 'react';
 import { withRouter, Redirect } from 'react-router';
 import { NavLink } from 'react-router-dom';
 
+/* API REQUEST */
+import axios from 'axios';
+
 /* Firebase */
 import fb from '../config/firebase';
 
@@ -12,6 +15,9 @@ import { AuthContext } from './Auth';
 
 /* Styling */
 import { RegisterContainer, Global } from '../assets/styles/Register';
+
+/* Domain */
+import { domain } from '../config/deploy';
 
 const Login = ({ history }) => {
     const [email, setEmail] = useState('')
@@ -22,8 +28,13 @@ const Login = ({ history }) => {
 
         try {
             await fb.auth().signInWithEmailAndPassword(email.trim(), password)
+            const response = await axios.post(`${domain}/login/${email}`);
+            console.log(response.data.result);
+
+            localStorage.setItem('token', response.data.result);
             history.push("/dashboard")
         } catch (error) {
+            console.log(error);
             alert(error)
         }
     }

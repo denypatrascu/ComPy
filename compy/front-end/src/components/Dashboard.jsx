@@ -1,8 +1,14 @@
 import React from 'react';
+
+/* Styling */
 import { Global } from '../assets/styles/Dashboard';
-import Header from './Header';
 import '../assets/css/Header.css';
 import '../assets/css/Button.css';
+
+/* Components */
+import Header from './Header';
+import Home from './Home';
+
 
 const Dashboard = () => {
 
@@ -10,6 +16,7 @@ const Dashboard = () => {
         <React.Fragment>
             <Global />
             <Header />
+            <Home />
         </React.Fragment>
 
     );

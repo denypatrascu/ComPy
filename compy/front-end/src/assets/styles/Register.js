@@ -50,6 +50,7 @@ export const RegisterContainer = styled.div`
 
         & > input:focus {
             outline-color: var(--turquoise);
+            outline-style: solid;
         }
 
         & > button {
@@ -62,6 +63,7 @@ export const RegisterContainer = styled.div`
             font-family: 'Poppins', sans-serif;
             font-weight: bold;
             cursor: pointer;
+            outline: none;
         }
 
         & > a {
