@@ -28,10 +28,7 @@ const Login = ({ history }) => {
 
         try {
             await fb.auth().signInWithEmailAndPassword(email.trim(), password)
-            const response = await axios.post(`${domain}/login/${email}`);
-            console.log(response.data.result);
-
-            localStorage.setItem('token', response.data.result);
+            await axios.post(`${domain}/login/${email}`);
             history.push("/dashboard")
         } catch (error) {
             console.log(error);

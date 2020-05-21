@@ -24,14 +24,17 @@ const Home = () => {
     const [message, setMessage] = useState('');
 
     useEffect(() => {
-        const decodedJWT = jwt(localStorage.getItem('token'));
-        setImage(decodedJWT.url);
+        axios.post(`${domain}/login/${currentUser.email}`)
+            .then((response) => {
+                setImage(response.data.imageUrl.url);
+            })
+            .catch((error) => console.log(error));
     }, [message, image])
 
     const uploadPhoto = async (e) => {
         e.preventDefault();
 
-        if (file !== '' ) {
+        if (file !== '') {
             const formData = new FormData();
             formData.append('file', file);
 
@@ -40,10 +43,7 @@ const Home = () => {
                     headers: { 'Content-Type': 'multipart/form-data' }
                 });
 
-                localStorage.setItem('token', response.data.token);
-                const decodedJWT = jwt(response.data.token);
-                setImage(decodedJWT.url);
-
+                setImage(response.data.token.url);
                 setMessage(response.data.message);
             } catch (error) {
                 setMessage(error.response.data.message);

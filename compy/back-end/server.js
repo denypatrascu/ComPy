@@ -71,17 +71,35 @@ async function getFilesByPrefix(prefix) {
     return names;
 }
 
+// Copies the file to the other bucket
+async function copyFile(filename) {
+    await cloudStorage
+        .bucket(process.env.GC_BUCKET)
+        .file("default/undraw_male_avatar_323b.svg")
+        .copy(cloudStorage.bucket(process.env.GC_BUCKET).file(filename));
+
+}
+
 /* Get default profile image on register */
-app.post('/default_image', async (req, res) => {
+app.post('/default_image/:username', async (req, res) => {
     try {
         const value = await getFilesByPrefix(process.env.GC_BUCKET_DEFAULT);
         const imageUrl = await generateSignedUrl(value[1]);
-        const token = jwt.sign(imageUrl, process.env.TOKEN_SECRET);
 
-        res.status(201).json({ result: token });
+        const username = req.params.username;
+        const directory = process.env.GC_BUCKET_UPLOADS;
+        const filePath = `${directory}/${username}/avatar.svg`;
+
+        await copyFile(filePath);
+
+        res.status(201).json({
+            message: `Avatar uploaded!`,
+            image: imageUrl
+        })
     } catch (err) {
-        res.status(500).json({ result: 'Something went wrong!' });
+        console.log(err);
     }
+
 })
 
 /* Get data about user on login */
@@ -95,21 +113,20 @@ app.post('/login/:username', async (req, res) => {
 
         /* If he already has a folder in bucket */
         if (result.length > 0) {
-            const imageUrl = await generateSignedUrl(result);
-            const token = jwt.sign(imageUrl, process.env.TOKEN_SECRET);
-            res.status(201).json({ result: token });
+            const imageUrl = await generateSignedUrl(result[0]);
+            res.status(201).json({ imageUrl });
         } else {
             /* If he doesn't, then get the default image */
             const value = await getFilesByPrefix(process.env.GC_BUCKET_DEFAULT);
             const imageUrl = await generateSignedUrl(value[1]);
-            const token = jwt.sign(imageUrl, process.env.TOKEN_SECRET);
 
-            res.status(201).json({ result: token });
+            res.status(201).json({ result: imageUrl });
         }
     } catch (error) {
         res.status(500).json({ result: "Something went wrong!" });
     }
 })
+
 
 /* Update user's profile image */
 app.post('/upload/:username', async (req, res) => {
@@ -136,14 +153,11 @@ app.post('/upload/:username', async (req, res) => {
             }
 
             const imageUrl = await generateSignedUrl(`uploads/${req.params.username}/${file.name}`);
-            const token = jwt.sign(imageUrl, process.env.TOKEN_SECRET);
 
             res.status(201).json({
                 message: `Avatar uploaded!`,
-                token: token
+                token: imageUrl
             })
-
-
         })
         .on('error', err => {
             console.error(err);

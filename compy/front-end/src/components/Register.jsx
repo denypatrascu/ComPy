@@ -26,9 +26,7 @@ const Register = ({ history }) => {
         event.preventDefault()
         try {
             await fb.auth().createUserWithEmailAndPassword(email.trim(), password);
-
-            const res = await axios.post(`${domain}/default_image`);
-            localStorage.setItem('token', res.data.result);
+            await axios.post(`${domain}/default_image/${email}`);
             history.push('/');
         } catch (error) {
             alert(error);
