@@ -37,7 +37,7 @@ const Header = () => {
                     </div>
                     <nav className="navbar">
                         <NavLink activeClassName="active" to="/dashboard"> Home </NavLink>
-                        <NavLink activeClassName="active" to="/pratice"> Practice </NavLink>
+                        <NavLink activeClassName="active" to="/practice"> Practice </NavLink>
                         <NavLink activeClassName="active" to="/leaderboard"> Leaderboard </NavLink>
 
                         <button className="button" onClick={handleMenuClick}> {username} </button>

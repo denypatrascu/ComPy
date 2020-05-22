@@ -14,7 +14,7 @@ import fb from '../config/firebase';
 import { RegisterContainer, Global } from '../assets/styles/Register';
 
 /* Domain */
-import {domain} from '../config/deploy';
+import { domain } from '../config/deploy';
 
 
 const Register = ({ history }) => {
@@ -39,7 +39,7 @@ const Register = ({ history }) => {
             <RegisterContainer>
                 <form onSubmit={handleSubmit}>
                     <h3> ComPy </h3>
-                    <h2> Create your account </h2> 
+                    <h2> Create your account </h2>
                     <input
                         type="email"
                         placeholder="Enter your email"

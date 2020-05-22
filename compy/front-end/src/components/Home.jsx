@@ -8,9 +8,6 @@ import { HomeContainer } from '../assets/styles/Home';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen, faCheck } from '@fortawesome/free-solid-svg-icons'
 
-/* jwt */
-import jwt from 'jwt-decode';
-
 /* Components */
 import { AuthContext } from './Auth';
 import { domain } from '../config/deploy';
@@ -29,7 +26,7 @@ const Home = () => {
                 setImage(response.data.imageUrl.url);
             })
             .catch((error) => console.log(error));
-    }, [message, image])
+    }, [message, image, currentUser.email])
 
     const uploadPhoto = async (e) => {
         e.preventDefault();

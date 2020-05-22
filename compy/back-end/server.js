@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
 const dotEnv = require('dotenv');
 const morgan = require('morgan');
-const jwt = require('jsonwebtoken');
+const mongoose = require('mongoose');
 
 dotEnv.config();
 
@@ -18,6 +18,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fileUpload({}));
 app.use(cors());
 app.use(morgan('dev'));
+
+
+/* Connect to mongoose DB */
+const uri = process.env.ATLAS_URI;
+mongoose.connect(uri, {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true});
+
+const connection = mongoose.connection;
+connection.once('open', () => {
+    console.log("MongoDB database connection established successfully!");
+}); 
 
 /* Prototypes */
 String.prototype.rsplit = function (sep, maxsplit) {
@@ -99,7 +109,6 @@ app.post('/default_image/:username', async (req, res) => {
     } catch (err) {
         console.log(err);
     }
-
 })
 
 /* Get data about user on login */
@@ -168,6 +177,12 @@ app.post('/upload/:username', async (req, res) => {
         })
         .end(req.files.file.data)
 });
+
+
+/* Require & set routes */
+const problemRouter = require('./routes/problem');
+
+app.use('/problems', problemRouter);
 
 app.listen(5000, () => {
     console.log("Server is running on port: 5000.");
