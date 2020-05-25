@@ -90,6 +90,12 @@ async function copyFile(filename) {
 
 }
 
+/* */
+app.get('/', (req, res) => {
+    console.log(req.method, req.originalUrl);
+    res.json({ message: 'Hello World! 🤩' });
+});
+
 /* Get default profile image on register */
 app.post('/default_image/:username', async (req, res) => {
     try {
@@ -184,6 +190,6 @@ const problemRouter = require('./routes/problem');
 
 app.use('/problems', problemRouter);
 
-app.listen(5000, () => {
-    console.log("Server is running on port: 5000.");
+app.listen(8080, () => {
+    console.log("Server is running on port: 8080.");
 });
