@@ -18,7 +18,7 @@ header > .container {
 
 header > .container a {
     text-decoration: none;
-    color: var(--black);
+    color: var(--turquoise);
 }
 
 header > .container > .title {
@@ -71,15 +71,26 @@ header > .container > .navbar > a span:before {
     left: -1em; top: -3px; bottom: -3px; width: 4px;
     border-radius: 2px;
     margin-left: -2px;
-    background-color: var(--background);
+    /*background-color: var(--background);*/
 }
 
 header > .container > .navbar > a.active {
     font-weight: bold;
+    transform: scale(1.1);
 }
 
 header > .container > .navbar > a:last-child {
     margin-right: 0;
+}
+
+header > .container > .navbar .button-container button {
+    border: 1px solid transparent;
+}
+
+header > .container > .navbar .button-container.active button {
+    background-color: var(--bg);
+    border-color: var(--turquoise);
+    color: var(--turquoise);
 }
 
 @media screen and (max-width: 780px) {

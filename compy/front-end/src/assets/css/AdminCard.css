@@ -1,0 +1,40 @@
+.admin-card {
+    background-color: var(--bg1);
+    padding: 1em;
+    border-radius: 5px;
+}
+
+.admin-card button.append {
+    padding: 16px;
+    color: var(--bg1);
+    background-color: var(--turquoise);
+    font-weight: 700;
+}
+
+.admin-card-items {
+    padding: 1em .5em 0 0;
+    color: var(--turquoise);
+}
+
+.admin-card-items svg {
+    color: var(--turquoise)
+}
+
+.admin-card-items button.delete {
+    background-color: var(--bg);
+}
+
+.admin-card-items .chip {
+    color: var(--turquoise);
+    background-color: var(--bg);
+    margin-right: 1em;
+}
+
+.admin-card-items .value:before,
+.admin-card-items .value:after{
+    content: '"';
+}
+
+.admin-card-items .value {
+    /* font-style: italic; */
+}

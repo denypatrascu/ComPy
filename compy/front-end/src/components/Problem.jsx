@@ -3,19 +3,38 @@ import React from 'react';
 /* React router */
 import { NavLink } from 'react-router-dom';
 
-const Problem = ({ problem }) => {
+import { Chip, Button } from '@material-ui/core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
-    /* we have to change the routes to /problem/problemId -> before we do that, we have to make the page */ 
-    let content = (
-        <NavLink to="/practice">
-            <div>
-                <h3> {problem.title} </h3>
-                <span> {problem.difficulty}, Rating: {problem.rating}, Success rate: 100% </span>
+const Problem = ({ problem }) => {
+    let { title, description, difficulty, categories } = problem;
+    const id = problem._id;
+    const href = `/problem/${id}`;
+
+    if (description.length > 100) {
+        description = `${description.substring(0, 100)} [...]`;
+    }
+
+    return (
+        <NavLink to={href}>
+            <div className="content">
+                <h3>{title}</h3>
+                <div className="description">{description}</div>
+                <div className="difficulty">{difficulty}</div>
+                <div className="categories">
+                    {categories.map(category => (
+                        <Chip size="small" className="chip" label={category}/>)
+                    )}
+                </div>
             </div>
-            <NavLink to="/practice"> Solve Problem </NavLink>
+            <NavLink to={href} className="solve">
+                <Button variant="outlined">
+                    Solve Problem <FontAwesomeIcon icon={ faChevronRight } />
+                </Button>
+            </NavLink>
         </NavLink>
     );
-    return content;
-}
+};
 
 export default Problem;

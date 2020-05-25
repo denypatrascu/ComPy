@@ -1,0 +1,165 @@
+.tabs {
+    -webkit-box-shadow: 0 0 16px -2px rgba(0, 0, 0, .75);
+    -moz-box-shadow: 0 0 16px -2px rgba(0, 0, 0, .75);
+    box-shadow: 0 0 16px -2px rgba(0, 0, 0, .75);
+}
+
+.tabs .MuiTab-textColorPrimary {
+    color: var(--bg1);
+}
+
+.content {
+    box-sizing: border-box;
+    position: relative;
+    padding: 1em;
+}
+
+.content .hash-tag {
+    color: var(--turquoise);
+    font-size: .9em;
+}
+
+.content.header h1,
+.content.paragraph h1,
+.content.attachment h1,
+.content.io h1 {
+    color: var(--turquoise-black);
+    text-transform: none;
+    font-size: 1.6em;
+}
+
+.content.header .header {
+    margin-top: 1.5em;
+}
+
+.content.paragraph .textarea-container textarea:first-child {
+    width: 100%;
+    padding: 1em;
+    min-height: 200px;
+    margin: 1em 0 0 0;
+    outline-color: var(--turquoise);
+}
+
+.content.io .io-row-header {
+    padding-top: 1.5em;
+    padding-bottom: .55em;
+    text-transform: uppercase;
+}
+
+.content.io .io-row {
+    display: flex;
+    align-items: center;
+    min-height: 2em;
+    border-top: 1px solid var(--turquoise);
+    padding-bottom: 0.3em;
+}
+
+.content.io .io-row textarea {
+    margin-top: .55em;
+    width: 100%;
+    padding: .5em;
+    outline-color: var(--turquoise);
+}
+
+.content.io .io-row.io-row-more {
+    margin-top: 2em;
+    border-color: transparent;
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+.content.io .io-row.io-row-more button {
+    margin: 0 auto;
+    font-weight: 500;
+    width: 100%;
+}
+
+.save-container {
+    margin-top: 1em;
+    display: flex;
+}
+
+.save-container button {
+    color: var(--bg1);
+    background-color: var(--turquoise) !important;
+}
+
+.drop-area > .container {
+    width: 100%;
+    margin: 0 auto;
+    align-items: center;
+    padding-top: 1em;
+}
+
+.drop-area > .container > .input {
+    text-align: center;
+    padding: 1.5em 1em;
+    border: 2px dashed var(--gray);
+    background-color: var(--turquoise);
+}
+
+.drop-area > .container > .input button {
+    margin-top: 1em;
+    color: var(--turquoise);
+    background-color: var(--text-white);
+    font-weight: 600;
+}
+
+.drop-area > .container > .input button span {
+    margin-left: .5em;
+}
+
+.drop-area > .container > .output > * {
+    margin-top: 0.5em;
+}
+
+.drop-area > .container > .output h1 {
+    margin-top: 0;
+}
+
+.drop-area > .container > .output > .previews {
+    padding: 1em 1em .75em 1em;
+    background-color: var(--gray);
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, .35);
+    -moz-box-shadow: inset 0 0 5px rgba(0, 0, 0, .35);
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, .35);
+}
+
+.drop-area > .container > .output > .previews > .carousel {
+    display: flex;
+    overflow-y: auto;
+}
+
+.drop-area > .container > .output > .previews > .carousel::-webkit-scrollbar-track {
+    background: var(--gray);
+}
+
+.drop-area > .container > .output > .previews > .carousel > .item {
+    min-width: 250px; height: 250px;
+    margin: 0 1em .75em 0;
+    background-color: var(--white);
+    box-shadow: 0 0 5px rgba(0, 0, 0, .15);
+    cursor: pointer;
+}
+
+.drop-area > .container > .output > .previews > .carousel > .item.active {
+    border: 5px solid var(--turquoise);
+}
+
+.drop-area > .container > .output > .previews > .carousel > .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    text-align: center;
+}
+
+.drop-area > .container > .output > .previews > .submit {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    margin-top: 1em;
+}
+
+.drop-area > .container > .output > .previews > .submit > div {
+    text-align: end;
+    align-content: center;
+}

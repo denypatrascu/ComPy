@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import { NavLink } from "react-router-dom";
 import { AuthContext } from './Auth';
 import fb from "../config/firebase";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
 
@@ -39,10 +41,16 @@ const Header = () => {
                         <NavLink activeClassName="active" to="/dashboard"> Home </NavLink>
                         <NavLink activeClassName="active" to="/practice"> Practice </NavLink>
                         <NavLink activeClassName="active" to="/leaderboard"> Leaderboard </NavLink>
+                        <NavLink activeClassName="active" to="/create-problem" className="button-container">
+                            <button className="button">
+                                <FontAwesomeIcon icon={faPlus} /> problem
+                            </button>
+                        </NavLink>
 
-                        <button className="button" onClick={handleMenuClick}> {username} </button>
-                        {showUpMenu ? <button className="sign-out-button" onClick={handleLogout} > Sign Out </button> : null}
-
+                        <span className="button-container">
+                            <button className="button" onClick={handleMenuClick}> {username} </button>
+                            {showUpMenu ? <button className="sign-out-button" onClick={handleLogout} > Sign Out </button> : null}
+                        </span>
                     </nav>
                 </div>
             </header>

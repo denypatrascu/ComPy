@@ -1,9 +1,14 @@
 :root {
   --bg:  hsl(200, 19%, 18%);
   --bg1: hsl(200, 19%, 13%);
+  --bg2: hsl(200, 19%, 7%);
   --turquoise: hsl(174, 38%, 66%);
   --turquoise-black: hsl(200, 19%, 15%);
-  --bg2: hsl(200, 19%, 7%);
+
+  --text-white: #F1F1F1;
+  --text-dark: #212121;
+  --gray: #EEEEEE;
+  --white: #FFFFFF;
 }
 
 html, body {

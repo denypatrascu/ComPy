@@ -15,31 +15,31 @@ import Problem from './Problem';
 import { domain } from '../config/deploy';
 
 const Practice = () => {
-
     const [problems, setProblems] = useState([]);
 
     useEffect(() => {
         axios.get(`${domain}/problems`)
             .then(response => {
-                setProblems(response.data.message);
+                setProblems(response.data);
             })
-            .catch(error => console.log(error));
-    }, [])
+            .catch(error => console.error(error));
+    }, []);
 
-    let content = (
+    return (
         <React.Fragment>
             <Global />
             <Header />
             <PracticeContainer>
                 <div>
-                    {problems.length > 0 ? problems.map((problem, index) => {
-                        return (<Problem key={index} problem={problem} />)
-                    }) : <h1> No problems available yet! </h1>}
+                    <div>
+                        {problems.length > 0 ? problems.map((problem, index) => {
+                            return (<Problem key={index} problem={problem} />)
+                        }) : <h1>No problems available yet!</h1>}
+                    </div>
                 </div>
             </PracticeContainer>
         </React.Fragment>
     );
-    return content;
-}
+};
 
 export default Practice;

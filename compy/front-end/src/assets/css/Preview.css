@@ -1,0 +1,42 @@
+.preview {
+    padding: 1em;
+}
+
+.preview div h1 {
+    color: var(--turquoise-black);
+    text-transform: none;
+    font-size: 1.6em;
+}
+
+.preview div h1.output {
+    padding-top: .5em;
+}
+
+.preview div code {
+    display: block;
+    font-size: 1.2em;
+}
+
+.preview div code.input,
+.preview div code.output {
+    background-color: var(--gray);
+    padding: .25em .5em;
+}
+
+.preview div .image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
+}
+
+.preview div .image-container img {
+    width: auto; height: auto;
+    max-height: 270px;
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+.preview div *:last-of-type {
+    margin-bottom: 0 !important;
+}
