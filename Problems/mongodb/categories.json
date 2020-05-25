@@ -1,0 +1,66 @@
+[{
+  "_id": {
+    "$oid": "5ecb8b56b7806208a9560fbe"
+  },
+  "name": "backtracking"
+},{
+  "_id": {
+    "$oid": "5ecb8bb0b7806208a9560fbf"
+  },
+  "name": "greedy"
+},{
+  "_id": {
+    "$oid": "5ecb8bc2b7806208a9560fc0"
+  },
+  "name": "dynamic programming"
+},{
+  "_id": {
+    "$oid": "5ecb8bddb7806208a9560fc1"
+  },
+  "name": "graphs"
+},{
+  "_id": {
+    "$oid": "5ecb8be5b7806208a9560fc2"
+  },
+  "name": "trees"
+},{
+  "_id": {
+    "$oid": "5ecb8c38b7806208a9560fc3"
+  },
+  "name": "object-oriented programming"
+},{
+  "_id": {
+    "$oid": "5ecb8c70b7806208a9560fc4"
+  },
+  "name": "math"
+},{
+  "_id": {
+    "$oid": "5ecb8c93b7806208a9560fc5"
+  },
+  "name": "recursion"
+},{
+  "_id": {
+    "$oid": "5ecb8ca3b7806208a9560fc6"
+  },
+  "name": "divide et impera"
+},{
+  "_id": {
+    "$oid": "5ecb8cd1b7806208a9560fc7"
+  },
+  "name": "dynamic structures"
+},{
+  "_id": {
+    "$oid": "5ecb8cfeb7806208a9560fc8"
+  },
+  "name": "linear structures"
+},{
+  "_id": {
+    "$oid": "5ecb8d05b7806208a9560fc9"
+  },
+  "name": "data structures"
+},{
+  "_id": {
+    "$oid": "5ecc2b68b7806208a9560fca"
+  },
+  "name": "regular expressions"
+}]

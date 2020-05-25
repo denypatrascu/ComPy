@@ -1,0 +1,289 @@
+[{
+  "_id": {
+    "$oid": "5ecb9d756bc86d39dc6f7552"
+  },
+  "categories": [
+    "greedy",
+    "dynamic programming",
+    "data structures"
+  ],
+  "rating": 0,
+  "content": [
+    {
+      "type": "header",
+      "value": "Introduction"
+    },
+    {
+      "type": "paragraph",
+      "value": "John works at a clothing store. He has a large pile of socks that he must pair by color for sale. Given an array of integers representing the color of each sock, determine how many pairs of socks with matching colors there are."
+    },
+    {
+      "type": "paragraph",
+      "value": "For example, there are n = 7 socks with colors ar = [1, 2, 1, 2, 1, 3, 2]. There is one pair of color 1 and one of color 2. There are three odd socks left, one of each color. The number of pairs is 2."
+    },
+    {
+      "type": "header",
+      "value": "Function Description"
+    },
+    {
+      "type": "paragraph",
+      "value": "Complete the sockMerchant function in the editor below. It must return an integer representing the number of matching pairs of socks that are available."
+    },
+    {
+      "type": "paragraph",
+      "value": "sockMerchant has the following parameter(s): n (the number of socks in the pile); ar (the colors of each sock)"
+    },
+    {
+      "type": "header",
+      "value": "Input Format"
+    },
+    {
+      "type": "paragraph",
+      "value": "The first line contains an integer n, the number of socks represented in ar."
+    },
+    {
+      "type": "paragraph",
+      "value": "The second line contains n pace-separated integers describing the colors ar[i] of the socks in the pile."
+    },
+    {
+      "type": "header",
+      "value": "Output Format"
+    },
+    {
+      "type": "paragraph",
+      "value": "Return the total number of matching pairs of socks that John can sell."
+    },
+    {
+      "type": "input\\output",
+      "value": "#1",
+      "data": [
+        {
+          "input": "9\n10 20 20 10 10 30 50 10 20",
+          "output": "3",
+          "visible": true
+        },
+        {
+          "input": "10\n1 1 3 1 2 1 3 3 3 3",
+          "output": "4"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "value": "Explanation"
+    },
+    {
+      "type": "attachment",
+      "value": "SockMerchant-image.png"
+    },
+    {
+      "type": "paragraph",
+      "value": "John can match three pairs of socks."
+    }
+  ],
+  "title": "Sock Merchant",
+  "description": "Given an array of integers representing the color of socks, determine how many pairs of socks with matching colors there are.",
+  "difficulty": "Easy",
+  "author": "denypatrascu",
+  "key": "d0e4b75-2a74-2cde-8682-d700c842622",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ecc23ad3c80f85fb4dcc649"
+  },
+  "categories": [
+    "greedy",
+    "dynamic programming"
+  ],
+  "rating": 0,
+  "content": [
+    {
+      "type": "header",
+      "value": "Introduction"
+    },
+    {
+      "type": "paragraph",
+      "value": "Gary is an avid hiker. He tracks his hikes meticulously, paying close attention to small details like topography. During his last hike he took exactly n steps. For every step he took, he noted if it was an uphill, U, or a downhill, D step. Gary's hikes start and end at sea level and each step up or down represents a 1 unit change in altitude. We define the following terms:"
+    },
+    {
+      "type": "paragraph",
+      "value": "A mountain is a sequence of consecutive steps above sea level, starting with a step up from sea level and ending with a step down to sea level.\n"
+    },
+    {
+      "type": "paragraph",
+      "value": "A valley is a sequence of consecutive steps below sea level, starting with a step down from sea level and ending with a step up to sea level."
+    },
+    {
+      "type": "paragraph",
+      "value": "Given Gary's sequence of up and down steps during his last hike, find and print the number of valleys he walked through."
+    },
+    {
+      "type": "paragraph",
+      "value": "For example, if Gary's path is s = [DDUUUUDD], he first enters a valley 2 units deep. Then he climbs out an up onto a mountain 2 units high. Finally, he returns to sea level and ends his hike."
+    },
+    {
+      "type": "header",
+      "value": "Function Description"
+    },
+    {
+      "type": "paragraph",
+      "value": "Complete the countingValleys function in the editor below. It must return an integer that denotes the number of valleys Gary traversed."
+    },
+    {
+      "type": "paragraph",
+      "value": "countingValleys has the following parameter(s): n (the number of steps Gary takes), s (a string describing his path)"
+    },
+    {
+      "type": "header",
+      "value": "Input Format"
+    },
+    {
+      "type": "paragraph",
+      "value": "The first line contains an integer n, the number of steps in Gary's hike."
+    },
+    {
+      "type": "paragraph",
+      "value": "The second line contains a single string s, of n characters that describe his path."
+    },
+    {
+      "type": "header",
+      "value": "Output Format"
+    },
+    {
+      "type": "paragraph",
+      "value": "Print a single integer that denotes the number of valleys Gary walked through during his hike."
+    },
+    {
+      "type": "input\\output",
+      "value": "#1",
+      "data": [
+        {
+          "input": "8\nUDDDUDUU\n",
+          "output": "1",
+          "visible": true
+        },
+        {
+          "input": "12\nDDUUDDUDUUUD\n",
+          "output": "2"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "value": "Explanation"
+    },
+    {
+      "type": "paragraph",
+      "value": "If we represent _ as sea level, a step up as /, and a step down as \\, Gary's hike can be drawn as:"
+    },
+    {
+      "type": "attachment",
+      "value": "Counting Valleys.png"
+    },
+    {
+      "type": "paragraph",
+      "value": "He enters and leaves one valley."
+    }
+  ],
+  "title": "Counting Valleys",
+  "description": "Help hicker Gary to follow and meticulously count his way.",
+  "difficulty": "Easy",
+  "author": "denypatrascu",
+  "key": "2d8841-a12-c4b-78c8-281b05feb1da",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ecc2cca3c80f85fb4dcc64a"
+  },
+  "categories": [
+    "regular expressions"
+  ],
+  "rating": 0,
+  "content": [
+    {
+      "type": "header",
+      "value": "Introduction"
+    },
+    {
+      "type": "paragraph",
+      "value": "A valid postal code P have to fulfil both below requirements:"
+    },
+    {
+      "type": "paragraph",
+      "value": "1. P must be a number in the range from 100000 to 999999 inclusive."
+    },
+    {
+      "type": "paragraph",
+      "value": "2. P must not contain more than one alternating repetitive digit pair."
+    },
+    {
+      "type": "paragraph",
+      "value": "Alternating repetitive digits are digits which repeat immediately after the next digit. In other words, an alternating repetitive digit pair is formed by two equal digits that have just a single digit between them."
+    },
+    {
+      "type": "header",
+      "value": "For example"
+    },
+    {
+      "type": "paragraph",
+      "value": "121426, 1 is an alternating repetitive digit."
+    },
+    {
+      "type": "paragraph",
+      "value": "523563, No digit is an alternating repetitive digit."
+    },
+    {
+      "type": "paragraph",
+      "value": "552523, both 2 and 5 are alternating repetitive digits."
+    },
+    {
+      "type": "paragraph",
+      "value": "Your task is to provide two regular expressions regex_integer_in_range and regex_alternating_repetitive_digit_pair. Where: regex_integer_in_range should match only integers range from 100000 to 999999 inclusive and regex_integer_in_range should find alternating repetitive digits pairs in a given string."
+    },
+    {
+      "type": "header",
+      "value": "Input Format"
+    },
+    {
+      "type": "paragraph",
+      "value": "Locked stub code in the editor reads a single string denoting P from stdin and uses provided expression and your regular expressions to validate if P is a valid postal code.\n"
+    },
+    {
+      "type": "header",
+      "value": "Output Format"
+    },
+    {
+      "type": "paragraph",
+      "value": "You are not responsible for printing anything to stdout. Locked stub code in the editor does that."
+    },
+    {
+      "type": "input\\output",
+      "value": "#1",
+      "data": [
+        {
+          "input": "110000",
+          "output": "False",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "value": "More details"
+    },
+    {
+      "type": "paragraph",
+      "value": "Both these regular expressions will be used by the provided code template to check if the input string P is a valid postal code."
+    },
+    {
+      "type": "attachment",
+      "value": "Validating Postal Codes.png"
+    }
+  ],
+  "title": "Validating Postal Codes",
+  "description": "Let's see how well you know the secret of regular expressions.",
+  "difficulty": "Hard",
+  "author": "denypatrascu",
+  "key": "7a100a2-1d32-035-ab-602703abe6a",
+  "__v": 0
+}]
