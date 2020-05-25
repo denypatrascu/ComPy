@@ -5,6 +5,7 @@
       <w>aieou</w>
       <w>compy</w>
       <w>gcloud</w>
+      <w>stdin</w>
       <w>werkzeug</w>
     </words>
   </dictionary>

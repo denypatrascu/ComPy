@@ -1,10 +1,11 @@
-import os
+# import os
 import sys
 import time
-import shutil
+import re
+# import shutil
 from io import StringIO
 from flask import Response, json, jsonify
-from werkzeug.utils import secure_filename
+# from werkzeug.utils import secure_filename
 from google.cloud import storage
 
 
@@ -14,6 +15,7 @@ USER_ID = 'userId'
 PROBLEM_ID = 'problemId'
 INPUT_CODE = 'inputCode'
 INPUT_FILE = 'inputFile'
+INPUT_DATA = 'inputData'
 ALLOWED_EXTENSIONS = {'py'}
 # UPLOAD_FILE_PATH = './temp'
 
@@ -30,13 +32,13 @@ def reject(status, message, mime_type=None):
     return response
 
 
-def run(code):
-    """
-    @note:
-    if __name__ == '__main__' can not be used in this method
-    """
+def parse(code):
+    return re.sub(r'if\W__name__\W+==\W+\'__main__\'\W*:', 'if True:', code)
 
+
+def run(code, input_data=''):
     # old_stdout = sys.stdout
+    sys.stdin = StringIO(input_data)
     sys.stdout = buffer = StringIO()
     t = time.time()
     # time.sleep(0)
@@ -64,7 +66,7 @@ def compile_code(request):
         return reject(404, 'Only JSON data is accepted!')
 
     request = request.get_json(silent=True)
-    keys = [PROBLEM_ID, INPUT_CODE, USER_ID]
+    keys = [PROBLEM_ID, INPUT_CODE, INPUT_DATA, USER_ID]
 
     if request is None:
         return reject(404, 'Invalid JSON')
@@ -76,12 +78,15 @@ def compile_code(request):
     user_id = request[USER_ID]
     problem_id = request[PROBLEM_ID]
     code = request[INPUT_CODE]
+    input_data = request[INPUT_DATA]
 
-    output, duration = run(code)
+    output, duration = run(parse(code), input_data)
 
     response = {
         # PROBLEM_ID: problem_id,
+        'input': input_data,
         'output': output,
+        'type': str(type(code)),
         'time': '{:.3f} ms'.format(duration)
     }
 
@@ -110,7 +115,7 @@ def compile_file(request):
     if request.method != 'POST':
         return reject(404, 'Only POST http request are accepted!')
 
-    keys = [PROBLEM_ID, USER_ID]
+    keys = [PROBLEM_ID, INPUT_DATA, USER_ID]
 
     for key in keys:
         if key not in request.form:
@@ -121,7 +126,9 @@ def compile_file(request):
 
     user_id = request.form[USER_ID]
     problem_id = request.form[PROBLEM_ID]
+    input_data = request.form[INPUT_DATA]
     file = request.files[INPUT_FILE]
+
     if not file:
         return reject(400, 'No file selected!')
 
@@ -155,11 +162,14 @@ def compile_file(request):
 
     blob = upload_file(file, user_id)
     code = blob.download_as_string()
-    output, duration = run(code)
+
+    output, duration = run(code, input_data)
 
     response = {
         # PROBLEM_ID: problem_id,
+        'input': input_data,
         'output': output,
+        'type': str(type(code)),
         'time': '{:.3f} ms'.format(duration)
     }
 
