@@ -84,7 +84,7 @@ const Practice = () => {
             <Global />
             <Header />
             <PracticeContainer>
-                <div>
+                <div className="problems">
                     <div>
                         {problems.length > 0 ? problems.map((problem, index) => {
                             return (<Problem key={index} problem={problem} />)
@@ -92,7 +92,7 @@ const Practice = () => {
                     </div>
                 </div>
 
-                <div>
+                <div className="filter">
                     <div>
                         <div>
                             <h3> Difficulty </h3>

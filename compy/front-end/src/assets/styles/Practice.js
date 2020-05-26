@@ -2,10 +2,11 @@ import styled from 'styled-components';
 
 export const PracticeContainer = styled.div`
     display: grid;
-    grid-template-columns: 1fr 0.3fr;
+    grid-template-columns: 1fr auto;
     width: 100%; max-width: 1200px;
     margin: 1.5em auto 1em auto;
     padding: 1em;
+    
 
     & > div:first-child {
         display: grid;
@@ -22,11 +23,14 @@ export const PracticeContainer = styled.div`
             color: var(--text-white);
         }
     }
+    
+    .filter, .problems {
+      align-self: start;
+    }
 
     & > div > div:first-child {
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: auto;
         grid-gap: 1em;
 
         & > a { 
@@ -108,8 +112,8 @@ export const PracticeContainer = styled.div`
         border-radius: 5px;
         margin-left: 1em;
         padding: 1em;
-        position: fixed;
-        left: 67%;
+        //position: fixed;
+        //left: 67%;
 
         & > div {
             display: grid;
