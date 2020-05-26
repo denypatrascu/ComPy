@@ -9,20 +9,26 @@ export const Global = createGlobalStyle`
 
 export const RegisterContainer = styled.div`
     background-color: var(--bg);
-    width: 20%;
-    height: 100vh;
-
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 0 16px -2px rgba(0, 0, 0, .35);
+    -moz-box-shadow: 0 0 16px -2px rgba(0, 0, 0, .35);
+    box-shadow: 0 0 16px -2px rgba(0, 0, 0, .35);
+    margin: 50vh auto 0 auto;
+    transform: translate(0, -50%);
+    
     & > form {
         width: 100%;
-        height: 30%;
         display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: auto;
         grid-gap: 1.5em;
         justify-items: center;
         text-align: center;
-        padding-top: 60%;
-        padding-bottom: 25%;
+        padding: 3em 3em 2em 3em;
         color: hsl(174, 38%, 66%);
 
         & > h3 {
