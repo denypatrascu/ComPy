@@ -24,6 +24,7 @@ import ComPyDropArea from './includes/DropArea';
 import { AdminContainer } from '../assets/styles/Admin';
 import '../assets/css/Admin.css';
 import '../assets/css/Preview.css';
+import { Global } from '../assets/styles/Dashboard';
 
 
 /* domain */
@@ -505,6 +506,7 @@ const Admin = () => {
 
     return (
         <React.Fragment>
+            <Global />
             <Header />
             <AdminContainer>
                 <div>

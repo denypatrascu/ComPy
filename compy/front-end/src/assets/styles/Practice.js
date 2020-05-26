@@ -2,18 +2,25 @@ import styled from 'styled-components';
 
 export const PracticeContainer = styled.div`
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 0.3fr;
     width: 100%; max-width: 1200px;
     margin: 1.5em auto 1em auto;
     padding: 1em;
 
-    & > div {
+    & > div:first-child {
+        display: grid;
+        height: auto;
+        grid-template-columns: 1fr;
         padding: 1em;
         background-color: var(--bg1);
         border-radius: 5px;
         -webkit-box-shadow: 0 0 16px -2px rgba(0, 0, 0, .35);
         -moz-box-shadow: 0 0 16px -2px rgba(0, 0, 0, .35);
         box-shadow: 0 0 16px -2px rgba(0, 0, 0, .35);
+
+        h2 { 
+            color: var(--text-white);
+        }
     }
 
     & > div > div:first-child {
@@ -21,13 +28,12 @@ export const PracticeContainer = styled.div`
         grid-template-columns: 1fr;
         grid-template-rows: auto;
         grid-gap: 1em;
-        padding: 0 1me;
 
         & > a { 
             text-decoration: none;
             color: var(--turquoise);
             background-color: var(--bg);
-            height: auto;
+            height: 11em;
             display: grid;
             grid-gap: 1em;
             grid-template-columns: 1fr auto;
@@ -82,6 +88,8 @@ export const PracticeContainer = styled.div`
                 
                 & button {
                     color: var(--turquoise);
+                    font-family: 'Poppins', sans-serif;
+                    font-size: 14px;
                     // border-color: var(--text-white);
                     
                     svg {
@@ -89,6 +97,35 @@ export const PracticeContainer = styled.div`
                     }
                 }
             }
+        }
+    }
+
+    & > div:nth-child(2) {
+        background-color: var(--bg1);
+        -webkit-box-shadow: inset 0 0 16px -2px rgba(0, 0, 0, .35);
+        -moz-box-shadow: inset 0 0 16px -2px rgba(0, 0, 0, .35);
+        box-shadow: inset 0 0 16px -2px rgba(0, 0, 0, .35);
+        border-radius: 5px;
+        margin-left: 1em;
+        padding: 1em;
+        position: fixed;
+        left: 67%;
+
+        & > div {
+            display: grid;
+            grid-template-columns: 1fr;
+            margin-bottom: 1em;
+            
+            & h3 {
+                color: var(--turquoise);
+                border-bottom: 0.5px solid var(--turquoise-black);
+                margin-bottom: 0.3em;
+            }
+
+            & label {
+                color: var(--text-white);
+            }
+
         }
     }
 `;

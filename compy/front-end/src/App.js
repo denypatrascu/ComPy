@@ -7,6 +7,7 @@ import Dashboard from './components/Dashboard';
 import Practice from './components/Practice';
 import Submit from './components/Submit';
 import Admin from './components/Admin';
+import Leaderboard from './components/Leaderboard';
 
 const App = () => {
 
@@ -14,6 +15,7 @@ const App = () => {
     <Switch>
       <Route exact path="/" component={Login} />
       <Route exact path="/register" component={Register} />
+      <PrivateRoute exact path="/leaderboard" component={Leaderboard} />
       <PrivateRoute exact path="/dashboard" component={Dashboard} />
       <PrivateRoute exact path="/practice" component={Practice} />
       <PrivateRoute exact path="/create-problem" component={Admin} />

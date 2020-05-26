@@ -4,6 +4,7 @@ const axios = require('axios');
 const router = require('express').Router();
 const { Category, Problem, Submission } = require('../models');
 
+
 const { Storage } = require('@google-cloud/storage');
 const gcStorage = new Storage({
     keyFilename: path.join(__dirname, '../config/gcloud2-storage.json'),
@@ -35,6 +36,83 @@ router.get('/', async (req, res) => {
     }
 });
 
+/* Get solved problems */
+router.get('/solved', async (req, res) => {
+    try {
+        let submissions = await Submission.find({});
+        let users = [];
+        let solvedProblems = [];
+
+        /* Get the number of solved problems for every user */
+        for (let i = 0; i < submissions.length; i++) {
+            users.push(submissions[i].email);
+            let sub = submissions[i].submissions;
+            let keys = Object.keys(submissions[i].submissions);
+            let solved = 0;
+            for (let j = 0; j < keys.length; j++) {
+                let check = false;
+                for (let k = 0; k < sub[keys[j]].length; k++) {
+                    if (sub[keys[j]][k].score === 100) check = true;
+                }
+
+                check ? solved += 1 : null
+            }
+
+            solvedProblems.push(solved);
+        }
+
+        /* Sort the users by the number of solved problems */
+        for (let i = 0; i < solvedProblems.length; i++) {
+            for (let j = i + 1; j <= solvedProblems.length; j++) {
+                if (solvedProblems[i] < solvedProblems[j]) {
+                    let aux = solvedProblems[i];
+                    solvedProblems[i] = solvedProblems[j];
+                    solvedProblems[j] = aux;
+
+                    aux = users[i];
+                    users[i] = users[j];
+                    users[j] = aux;
+                }
+            }
+        }
+
+        return res.status(200).json({ users, solvedProblems });
+    } catch (err) {
+        return res.status(404).json({ message: "Something went wrong.." });
+    }
+});
+
+/* Solved problems by a specific user */
+router.get('/solved/:user', async (req, res) => {
+
+    let user = req.params.user;
+
+    try {
+        let submissions = await Submission.find({});
+        let solvedProblems = [];
+
+        /* Get the number of solved problems for every user */
+        for (let i = 0; i < submissions.length; i++) {
+            if (user === submissions[i].email) {
+                let sub = submissions[i].submissions;
+                let keys = Object.keys(submissions[i].submissions);
+                for (let j = 0; j < keys.length; j++) {
+                    let check = false;
+                    for (let k = 0; k < sub[keys[j]].length; k++) {
+                        if (sub[keys[j]][k].score === 100) check = true;
+                    }
+
+                    check ? solvedProblems.push(keys[j]) : null
+                }
+            }
+        }
+
+        return res.status(200).json({ solvedProblems });
+    } catch (err) {
+        return res.status(404).json({ message: "Something went wrong.." });
+    }
+})
+
 /* Get all categories for problems */
 router.get('/category', async (req, res) => {
     try {
@@ -59,6 +137,83 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+/* Filter problems by category and difficulty */
+router.post('/filter', async (req, res) => {
+    let difficulty = req.body.difficulties;
+    let category = req.body.categories;
+
+
+    if (difficulty.length === 0 && category.length === 0) {
+        const problems = await Problem.find({});
+        return res.status(200).json(problems);
+    } else {
+        const problems = await Problem.find({});
+
+        if (category.length > 0 && difficulty.length > 0) {
+            let possibleProblems = [];
+
+            for (let i = 0; i < difficulty.length; i++) {
+                for (let j = 0; j < problems.length; j++) {
+                    if (problems[j].difficulty == difficulty[i]) {
+                        possibleProblems.push(problems[j]);
+                    }
+                }
+            }
+
+            let finalProblems = [];
+            for (let i = 0; i < category.length; i++) {
+                for (let j = 0; j < possibleProblems.length; j++) {
+                    for (let k = 0; k < possibleProblems[j].categories.length; k++) {
+                        if (category[i] === possibleProblems[j].categories[k]) {
+
+                            let check = false;
+                            for (let l = 0; l < finalProblems.length; l++) {
+                                if (finalProblems[l].title === possibleProblems[j].title) check = true;
+                            }
+
+                            if (!check) finalProblems.push(possibleProblems[j]);
+                        }
+                    }
+                }
+            }
+
+            return res.status(200).json(finalProblems);
+
+        } else if (category.length === 0 && difficulty.length > 0) {
+            let possibleProblems = [];
+
+            for (let i = 0; i < difficulty.length; i++) {
+                for (let j = 0; j < problems.length; j++) {
+                    if (problems[j].difficulty == difficulty[i]) {
+                        possibleProblems.push(problems[j]);
+                    }
+                }
+            }
+
+            return res.status(200).json(possibleProblems);
+
+        } else if (category.length > 0 && difficulty.length === 0) {
+            let finalProblems = [];
+            for (let i = 0; i < category.length; i++) {
+                for (let j = 0; j < problems.length; j++) {
+                    for (let k = 0; k < problems[j].categories.length; k++) {
+                        if (category[i] === problems[j].categories[k]) {
+                            let check = false;
+                            for (let l = 0; l < finalProblems.length; l++) {
+                                if (finalProblems[l].title === problems[j].title) check = true;
+                            }
+
+                            if (!check) finalProblems.push(problems[j]);
+                        }
+                    }
+                }
+            }
+
+            return res.status(200).json(finalProblems);
+        }
+    }
+})
+
 /* Get a problem by attachments */
 router.get('/:id/attachment', async (req, res) => {
     const { id } = req.params;
@@ -80,16 +235,16 @@ router.get('/:id/attachment', async (req, res) => {
 
 /* Insert a problem */
 router.post('/', async (req, res) => {
-   console.log(req.body);
+    console.log(req.body);
 
-   try {
-       const problem = new Problem(req.body);
-       await problem.save();
-       console.log('Problem saved!');
-       return res.status(201).json({ message: 'Problem created' });
-   } catch (err) {
-       return res.status(500).json({ error: err.message });
-   }
+    try {
+        const problem = new Problem(req.body);
+        await problem.save();
+        console.log('Problem saved!');
+        return res.status(201).json({ message: 'Problem created' });
+    } catch (err) {
+        return res.status(500).json({ error: err.message });
+    }
 });
 
 /* Upload problem attachments */
@@ -127,11 +282,12 @@ router.post('/upload', async (req, res) => {
 
 router.post('/submit', async (req, res) => {
     const data = req.body;
+
     try {
         const response = await axios.post(`${process.env.GC_FUNCTIONS}/compile_code`,
             data, {
-                headers: {'Content-Type': 'application/json'}
-            });
+            headers: { 'Content-Type': 'application/json' }
+        });
         return res.status(201).json(response.data);
     } catch (err) {
         console.log(err.response.data);
@@ -165,8 +321,6 @@ router.post('/submissions', async (req, res) => {
                 submissions[problemId] = [{ results, score, date: new Date() }]
             }
 
-            console.log(submission.submissions);
-
             await Submission.updateOne({ email }, submission);
         }
 
@@ -176,7 +330,5 @@ router.post('/submissions', async (req, res) => {
     }
 
 });
-
-
 
 module.exports = router;

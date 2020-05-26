@@ -10,6 +10,9 @@ import { faPen, faCheck } from '@fortawesome/free-solid-svg-icons'
 
 /* Components */
 import { AuthContext } from './Auth';
+import SolvedProblem from './SolvedProblem';
+
+/* Deployment */
 import { domain } from '../config/deploy';
 
 
@@ -18,6 +21,7 @@ const Home = () => {
     const [image, setImage] = useState('');
     const { currentUser } = useContext(AuthContext);
     const [message, setMessage] = useState('');
+    const [solvedProblems, setSolvedProblems] = useState([]);
 
     useEffect(() => {
         axios.post(`${domain}/login/${currentUser.email}`)
@@ -25,7 +29,14 @@ const Home = () => {
                 setImage(response.data.imageUrl.url);
             })
             .catch((error) => console.log(error));
-    }, [message, image, currentUser.email]);
+
+        axios.get(`${domain}/problems/solved/${currentUser.email}`)
+            .then((response) => {
+                setSolvedProblems(response.data.solvedProblems);
+            })
+            .catch((error) => console.log(error))
+
+    }, [message]);
 
     const uploadPhoto = async (e) => {
         e.preventDefault();
@@ -71,7 +82,18 @@ const Home = () => {
                     {message !== '' ? <span>{message}</span> : <span> </span>}
                 </form>
                 <div>
-                    <h1>Solved problems</h1>
+                    <div>
+                        <div>
+                            <h2>Solved problems</h2>
+                            <div>
+                                {solvedProblems.length > 0 ? 
+                                    solvedProblems.map((problem, index) => {
+                                        return (<SolvedProblem id={problem} key={index}/>)
+                                    })
+                                : <span> No problem solved yet. 🤔 </span>}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </HomeContainer>
         </React.Fragment >

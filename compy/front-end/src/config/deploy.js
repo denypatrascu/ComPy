@@ -1,8 +1,8 @@
 /* Production */
-// const domain = 'https://cotaoctavian.ew.r.appspot.com';
+const domain = 'https://cotaoctavian.ew.r.appspot.com';
 
 /* Development */
-const domain = 'http://localhost:8080';
+// const domain = 'http://localhost:8080';
 
 // const COMPILER = {
 //     // FILE: 'http://localhost:8080/compile_file',

@@ -38,6 +38,8 @@ const Login = ({ history }) => {
 
     const { currentUser } = useContext(AuthContext);
 
+    console.log(history.location)
+
     if (currentUser) {
         return <Redirect to="/dashboard" />
     }

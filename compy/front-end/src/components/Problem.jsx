@@ -7,6 +7,9 @@ import { Chip, Button } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
+/* Styling */
+import { Global } from '../assets/styles/Dashboard';
+
 const Problem = ({ problem }) => {
     let { title, description, difficulty, categories } = problem;
     const id = problem._id;
@@ -17,23 +20,26 @@ const Problem = ({ problem }) => {
     }
 
     return (
-        <NavLink to={href}>
-            <div className="content">
-                <h3>{title}</h3>
-                <div className="description">{description}</div>
-                <div className="difficulty">{difficulty}</div>
-                <div className="categories">
-                    {categories.map(category => (
-                        <Chip size="small" className="chip" label={category}/>)
-                    )}
+        <React.Fragment>
+            <Global />
+            <NavLink to={href}>
+                <div className="content">
+                    <h3>{title}</h3>
+                    <div className="description">{description}</div>
+                    <div className="difficulty">{difficulty}</div>
+                    <div className="categories">
+                        {categories.map(category => (
+                            <Chip size="small" className="chip" label={category} />)
+                        )}
+                    </div>
                 </div>
-            </div>
-            <NavLink to={href} className="solve">
-                <Button variant="outlined">
-                    Solve Problem <FontAwesomeIcon icon={ faChevronRight } />
-                </Button>
+                <NavLink to={href} className="solve">
+                    <Button variant="outlined">
+                        Solve Problem <FontAwesomeIcon icon={faChevronRight} />
+                    </Button>
+                </NavLink>
             </NavLink>
-        </NavLink>
+        </React.Fragment>
     );
 };
 

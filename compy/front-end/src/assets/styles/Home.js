@@ -19,13 +19,17 @@ export const HomeContainer = styled.div`
         height: calc(80vh);
 
         & > img {
-            width: 220px; height: auto;
+            width: 220px; height: 220px;
             padding: 10px;
             background-color: var(--bg1);
             border-radius: 4px;
             grid-column-start: 1;
             grid-column-end: 3;
             transition: filter 300ms ease-in-out;
+
+            -webkit-box-shadow: 0 0 16px -2px rgba(0, 0, 0, .35);
+            -moz-box-shadow: 0 0 16px -2px rgba(0, 0, 0, .35);
+            box-shadow: 0 0 16px -2px rgba(0, 0, 0, .35);
             
             &:hover {
                 filter: hue-rotate(65deg);
@@ -43,6 +47,10 @@ export const HomeContainer = styled.div`
             line-height: 35px;
             padding-left: .5em;
             position: relative;
+
+            -webkit-box-shadow: 0 0 16px -2px rgba(0, 0, 0, .35);
+            -moz-box-shadow: 0 0 16px -2px rgba(0, 0, 0, .35);
+            box-shadow: 0 0 16px -2px rgba(0, 0, 0, .35);
             
             & > svg {
                 position: absolute;
@@ -53,6 +61,10 @@ export const HomeContainer = styled.div`
         }
         
         & > button {
+            -webkit-box-shadow: 0 0 16px -2px rgba(0, 0, 0, .35);
+            -moz-box-shadow: 0 0 16px -2px rgba(0, 0, 0, .35);
+            box-shadow: 0 0 16px -2px rgba(0, 0, 0, .35);
+
             & > svg {
                 font-size: 1.1em;
             }
@@ -60,7 +72,7 @@ export const HomeContainer = styled.div`
 
         & > button, & > label {
             background: var(--bg1);
-            border: 1px solid var(--bg1);
+            border: 2px solid var(--bg1);
             border-radius: 4px;
             outline-color: var(--turquoise);
             color: var(--turquoise);
@@ -89,13 +101,71 @@ export const HomeContainer = styled.div`
 
     & > div {
         display: flex;
-        height: 100%;
+        height: auto;
+        width: 100%;
         justify-self: start;
         margin-left: 2em;
+
+        -webkit-box-shadow: 0 0 16px -2px rgba(0, 0, 0, .35);
+        -moz-box-shadow: 0 0 16px -2px rgba(0, 0, 0, .35);
+        box-shadow: 0 0 16px -2px rgba(0, 0, 0, .35);
         
-        h1 {
-            font-size: 1.6em;
-            color: var(--text-white);
+
+        & > div {
+            display: grid;
+            grid-template-columns: 1fr;
+            background-color: var(--bg1);
+            border-radius: 5px;
+            width: 100%;
+            height: auto;
+            padding: 1em;
+
+            & > div {
+
+                & > h2 {
+                    height: 0.2vh;
+                    color: var(--text-white);
+                    margin-bottom: 2em;
+                }
+
+                > div {
+                    display: grid;
+                    grid-template-columns: repeat(5, 1fr);
+                    width: 100%;
+                    grid-template-rows: auto;
+                    grid-gap: 1em;
+
+                    & > span {
+                        color: var(--turquoise);
+                        font-size: 18px;
+                        grid-column: 1 / 3;
+                    }
+                    
+                    & a {
+                        color: var(--turquoise);
+                        text-decoration: none;
+                        height: 10em;
+                        background-color: var(--bg);
+                        border-radius: 5px;
+                        display: grid;
+                        text-align: center;
+                        align-items: center;
+                        align-content: center;
+                        justify-content: center;
+
+                        -webkit-box-shadow: inset 0 0 16px -2px rgba(0, 0, 0, .35);
+                        -moz-box-shadow: inset 0 0 16px -2px rgba(0, 0, 0, .35);
+                        box-shadow: inset 0 0 16px -2px rgba(0, 0, 0, .35);
+                        transition: all 300ms ease-in-out;
+                    }
+
+                    & a:hover {
+                        background-color: var(--bg1);
+                        color: var(--text-white);
+                    }
+
+                }
+            }
         }
     }
 `;
