@@ -1,1 +1,0 @@
-Configuration files, like Service Accounts, Firebase config, etc., were removed for security reasons.
